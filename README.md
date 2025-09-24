@@ -1,6 +1,6 @@
 # NetBox Ansible Populator
 
-[![CI/CD](https://github.com/YOUR_USERNAME/netbox-ansible-populator/actions/workflows/main.yml/badge.svg)](https://github.com/YOUR_USERNAME/netbox-ansible-populator/actions/workflows/main.yml)
+[![CI/CD](https://github.com/delpinomejia/netbox-ansible-populator/actions/workflows/main.yml/badge.svg)](https://github.com/delpinomejia/netbox-ansible-populator/actions/workflows/main.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Ansible](https://img.shields.io/badge/Ansible-2.15%2B-red)](https://www.ansible.com/)
 [![NetBox](https://img.shields.io/badge/NetBox-3.0%2B-blue)](https://netbox.dev/)
@@ -43,7 +43,7 @@ Automate the population of your NetBox instance with network infrastructure data
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/netbox-ansible-populator.git
+git clone https://github.com/delpinomejia/netbox-ansible-populator.git
 cd netbox-ansible-populator
 ```
 
@@ -305,10 +305,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Support
 
-- 📖 [Documentation](https://github.com/YOUR_USERNAME/netbox-ansible-populator/wiki)
-- 🐛 [Issue Tracker](https://github.com/YOUR_USERNAME/netbox-ansible-populator/issues)
-- 💬 [Discussions](https://github.com/YOUR_USERNAME/netbox-ansible-populator/discussions)
+- 📖 [Documentation](https://github.com/delpinomejia/netbox-ansible-populator/wiki)
+- 🐛 [Issue Tracker](https://github.com/delpinomejia/netbox-ansible-populator/issues)
+- 💬 [Discussions](https://github.com/delpinomejia/netbox-ansible-populator/discussions)
 
 ---
 
-**⚠️ Important:** Remember to replace `YOUR_USERNAME` with your actual GitHub username throughout this README!
+**⚠️ Important:** Remember to replace `delpinomejia` with your actual GitHub username throughout this README!
