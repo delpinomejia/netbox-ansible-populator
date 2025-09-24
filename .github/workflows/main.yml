@@ -1,0 +1,83 @@
+name: NetBox Ansible Populator CI/CD
+
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:  # Allow manual triggering
+
+env:
+  PYTHON_VERSION: '3.12'
+  PIP_DISABLE_PIP_VERSION_CHECK: 1
+  PIP_NO_CACHE_DIR: 1
+  ANSIBLE_COLLECTIONS_PATH: ${{ github.workspace }}/collections
+  ANSIBLE_STDOUT_CALLBACK: yaml
+
+jobs:
+  lint:
+    name: Lint Ansible Playbooks
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          
+      - name: Install Ansible collections
+        run: |
+          ansible-galaxy collection install -r collections/requirements.yml --collections-path "${{ env.ANSIBLE_COLLECTIONS_PATH }}"
+      
+      - name: Run Ansible Lint
+        run: ansible-lint playbooks/populate.yml
+        continue-on-error: true  # equivalent to allow_failure: true
+
+  populate_netbox:
+    name: Populate NetBox
+    runs-on: ubuntu-latest
+    needs: lint  # Run after lint job completes
+    # Only run if NETBOX_TOKEN and NETBOX_URL secrets are configured
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          
+      - name: Install Ansible collections
+        run: |
+          ansible-galaxy collection install -r collections/requirements.yml --collections-path "${{ env.ANSIBLE_COLLECTIONS_PATH }}"
+      
+      - name: Check if NetBox credentials are configured
+        run: |
+          if [ -z "${{ secrets.NETBOX_TOKEN }}" ] || [ -z "${{ secrets.NETBOX_URL }}" ]; then
+            echo "::warning::NetBox credentials not configured in GitHub Secrets"
+            echo "Please add NETBOX_TOKEN and NETBOX_URL to your repository secrets"
+            exit 0  # Don't fail the workflow
+          fi
+      
+      - name: Run NetBox Population Playbook
+        if: env.NETBOX_TOKEN != '' && env.NETBOX_URL != ''
+        env:
+          NETBOX_TOKEN: ${{ secrets.NETBOX_TOKEN }}
+          NETBOX_URL: ${{ secrets.NETBOX_URL }}
+        run: |
+          ansible-playbook -i inventory/hosts.ini playbooks/populate.yml

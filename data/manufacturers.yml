@@ -1,0 +1,52 @@
+---
+# NetBox Manufacturers Configuration
+# Define hardware manufacturers for your devices
+netbox_manufacturers:
+  # Network Equipment Manufacturers
+  - name: Cisco Systems
+    slug: cisco
+    description: "Network infrastructure equipment"
+    
+  - name: Juniper Networks
+    slug: juniper
+    description: "Enterprise networking solutions"
+    
+  - name: Arista Networks
+    slug: arista
+    description: "Cloud networking solutions"
+    
+  - name: Ubiquiti
+    slug: ubiquiti
+    description: "Enterprise and SMB networking"
+    
+  # Server Manufacturers
+  - name: Dell Technologies
+    slug: dell
+    description: "Enterprise servers and storage"
+    
+  - name: HPE
+    slug: hpe
+    description: "Hewlett Packard Enterprise servers"
+    
+  - name: Supermicro
+    slug: supermicro
+    description: "High-performance computing servers"
+    
+  - name: Lenovo
+    slug: lenovo
+    description: "Data center solutions"
+    
+  # Storage Manufacturers  
+  - name: NetApp
+    slug: netapp
+    description: "Enterprise storage arrays"
+    
+  - name: Pure Storage
+    slug: pure-storage
+    description: "All-flash storage arrays"
+    
+  # Generic/Custom
+  - name: Generic
+    slug: generic
+    description: "Generic or white-box equipment"
+

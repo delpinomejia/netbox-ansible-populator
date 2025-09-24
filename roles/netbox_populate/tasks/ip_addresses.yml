@@ -1,0 +1,19 @@
+---
+- name: Ensure IP addresses (and assign to interfaces)
+  when: (netbox_ip_addresses | default([])) | length > 0
+  loop: "{{ netbox_ip_addresses }}"
+  loop_control:
+    label: "{{ item.address }}"
+  netbox.netbox.netbox_ip_address:
+    netbox_url: "{{ nb_common.netbox_url }}"
+    netbox_token: "{{ nb_common.netbox_token }}"
+    validate_certs: "{{ nb_common.validate_certs }}"
+    data:
+      address: "{{ item.address }}"
+      status: "{{ item.status | default('active') }}"
+      tenant: "{{ item.tenant | default(omit) }}"
+      assigned_object:
+        device: "{{ item.device }}"
+        name: "{{ item.interface }}"
+    state: present
+

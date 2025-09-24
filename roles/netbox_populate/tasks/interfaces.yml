@@ -1,0 +1,20 @@
+---
+- name: Ensure interfaces
+  when: (netbox_interfaces | default([])) | length > 0
+  loop: "{{ netbox_interfaces }}"
+  loop_control:
+    label: "{{ item.device }} {{ item.name }}"
+  netbox.netbox.netbox_device_interface:
+    netbox_url: "{{ nb_common.netbox_url }}"
+    netbox_token: "{{ nb_common.netbox_token }}"
+    validate_certs: "{{ nb_common.validate_certs }}"
+    data:
+      device: "{{ item.device }}"
+      name: "{{ item.name }}"
+      enabled: "{{ item.enabled | default(true) }}"
+      type: "{{ item.type | default('virtual') }}"
+      mtu: "{{ item.mtu | default(omit) }}"
+      mac_address: "{{ item.mac_address | default(omit) }}"
+      mode: "{{ item.mode | default(omit) }}"
+    state: present
+

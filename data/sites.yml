@@ -1,0 +1,33 @@
+---
+# NetBox Sites Configuration
+# Define your physical locations/sites here
+netbox_sites:
+  - name: Main Data Center
+    slug: main-dc
+    status: active
+    region: north-america
+    physical_address: "123 Tech Street, Example City, EX 12345"
+    shipping_address: "123 Tech Street, Example City, EX 12345"
+    latitude: 37.7749
+    longitude: -122.4194
+    description: "Primary data center location"
+    
+  - name: Branch Office 01
+    slug: branch-01
+    status: active
+    region: north-america
+    physical_address: "456 Business Ave, Sample Town, ST 67890"
+    description: "Branch office location"
+    
+  - name: Cloud Region
+    slug: cloud-aws-us-east
+    status: active
+    region: cloud
+    description: "AWS US-East-1 region resources"
+    
+  - name: Disaster Recovery Site
+    slug: dr-site
+    status: planned
+    region: europe
+    description: "Future DR site location"
+

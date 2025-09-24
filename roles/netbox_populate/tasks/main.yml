@@ -1,0 +1,17 @@
+---
+# Order matters due to references between objects
+- name: Include manufacturers tasks
+  ansible.builtin.import_tasks: manufacturers.yml
+- name: Include device roles tasks
+  ansible.builtin.import_tasks: device_roles.yml
+- name: Include device types tasks
+  ansible.builtin.import_tasks: device_types.yml
+- name: Include sites tasks
+  ansible.builtin.import_tasks: sites.yml
+- name: Include devices tasks
+  ansible.builtin.import_tasks: devices.yml
+- name: Include interfaces tasks
+  ansible.builtin.import_tasks: interfaces.yml
+- name: Include IP addresses tasks
+  ansible.builtin.import_tasks: ip_addresses.yml
+

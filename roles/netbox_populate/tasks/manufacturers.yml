@@ -1,0 +1,15 @@
+---
+- name: Ensure manufacturers
+  when: (netbox_manufacturers | default([])) | length > 0
+  loop: "{{ netbox_manufacturers }}"
+  loop_control:
+    label: "{{ item.name }}"
+  netbox.netbox.netbox_manufacturer:
+    netbox_url: "{{ nb_common.netbox_url }}"
+    netbox_token: "{{ nb_common.netbox_token }}"
+    validate_certs: "{{ nb_common.validate_certs }}"
+    data:
+      name: "{{ item.name }}"
+      slug: "{{ item.slug | default(omit) }}"
+    state: present
+

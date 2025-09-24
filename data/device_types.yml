@@ -1,0 +1,12 @@
+---
+netbox_device_types:
+  - manufacturer: Ubiquiti
+    model: UDM Pro
+    slug: udm-pro
+  - manufacturer: Ubiquiti
+    model: US-24
+    slug: us-24
+  - manufacturer: Supermicro
+    model: SYS-5028D-TN4T
+    slug: sys-5028d-tn4t
+

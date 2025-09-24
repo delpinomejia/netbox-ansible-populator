@@ -1,0 +1,71 @@
+---
+# Sample IP Address Configuration for NetBox
+# This file contains example IP addresses to populate in NetBox
+# Replace these with your actual network configuration
+
+netbox_ip_addresses:
+  # Example: Core Network Infrastructure
+  - address: 10.0.1.1/24
+    device: core-router-01
+    interface: LAN
+    description: "Main router LAN interface"
+    status: active
+    role: anycast
+    
+  - address: 10.0.1.2/24
+    device: core-switch-01
+    interface: vlan1
+    description: "Core switch management IP"
+    status: active
+    
+  # Example: Server Infrastructure  
+  - address: 10.0.10.10/24
+    device: app-server-01
+    interface: eth0
+    description: "Application server primary interface"
+    status: active
+    dns_name: app01.example.local
+    
+  - address: 10.0.10.20/24
+    device: db-server-01
+    interface: eth0
+    description: "Database server primary interface"
+    status: active
+    dns_name: db01.example.local
+    
+  # Example: Storage Infrastructure
+  - address: 10.0.20.10/24
+    device: storage-nas-01
+    interface: eth0
+    description: "NAS storage array management"
+    status: active
+    
+  # Example: Management Network
+  - address: 172.16.0.10/24
+    device: mgmt-server-01
+    interface: eth1
+    description: "Out-of-band management interface"
+    status: active
+    vrf: management
+    
+  # Example: DMZ Services
+  - address: 192.0.2.10/24
+    device: web-server-01
+    interface: eth0
+    description: "Public web server"
+    status: active
+    dns_name: www.example.com
+    
+  # Example: IPv6 Addresses
+  - address: 2001:db8:1::10/64
+    device: ipv6-router-01
+    interface: eth0
+    description: "IPv6 gateway"
+    status: active
+    
+# Additional examples with various configurations:
+# - Virtual IPs (VIPs) for load balancing
+# - Secondary IPs on interfaces
+# - IPs in different VRFs
+# - Reserved IPs for future use (status: reserved)
+# - Deprecated IPs (status: deprecated)

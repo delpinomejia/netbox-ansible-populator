@@ -1,0 +1,15 @@
+---
+netbox_interfaces:
+  - device: homelab-router
+    name: WAN
+    type: 1000base-t
+  - device: homelab-router
+    name: LAN
+    type: 1000base-t
+  - device: homelab-switch
+    name: uplink
+    type: 1000base-t
+  - device: homelab-nas
+    name: eth0
+    type: 1000base-t
+

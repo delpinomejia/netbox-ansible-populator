@@ -1,0 +1,80 @@
+---
+# NetBox Devices Configuration
+# Define your network devices, servers, and other equipment
+netbox_devices:
+  # Core Network Infrastructure
+  - name: core-router-01
+    site: Main Data Center
+    device_role: Router
+    device_type: ISR-4451
+    manufacturer: Cisco Systems
+    status: active
+    serial: "SERIAL123456"
+    asset_tag: "ASSET-001"
+    rack: "Rack-A1"
+    position: 40
+    face: front
+    
+  - name: core-switch-01
+    site: Main Data Center
+    device_role: Switch
+    device_type: Catalyst-9300
+    manufacturer: Cisco Systems
+    status: active
+    serial: "SERIAL789012"
+    asset_tag: "ASSET-002"
+    rack: "Rack-A1"
+    position: 38
+    
+  # Server Infrastructure
+  - name: app-server-01
+    site: Main Data Center
+    device_role: Server
+    device_type: ProLiant-DL360
+    manufacturer: HPE
+    status: active
+    serial: "SERVER123456"
+    asset_tag: "ASSET-010"
+    rack: "Rack-B1"
+    position: 20
+    
+  - name: db-server-01
+    site: Main Data Center
+    device_role: Database Server
+    device_type: PowerEdge-R740
+    manufacturer: Dell Technologies
+    status: active
+    serial: "SERVER789012"
+    asset_tag: "ASSET-011"
+    rack: "Rack-B1"
+    position: 18
+    
+  # Storage Infrastructure
+  - name: storage-nas-01
+    site: Main Data Center
+    device_role: Storage
+    device_type: FAS8200
+    manufacturer: NetApp
+    status: active
+    serial: "NAS123456"
+    asset_tag: "ASSET-020"
+    rack: "Rack-C1"
+    position: 10
+    
+  # Branch Office Equipment
+  - name: branch-router-01
+    site: Branch Office 01
+    device_role: Router
+    device_type: ISR-1100
+    manufacturer: Cisco Systems
+    status: active
+    serial: "BRANCH123456"
+    
+  - name: branch-switch-01
+    site: Branch Office 01
+    device_role: Switch
+    device_type: Catalyst-2960
+    manufacturer: Cisco Systems
+    status: active
+    serial: "BRANCH789012"
+

@@ -1,0 +1,16 @@
+---
+# Connection to NetBox API. Prefer setting these as GitLab CI variables.
+# Locally (PowerShell):
+#   $env:NETBOX_URL = "https://netbox.example.com"
+#   $env:NETBOX_TOKEN = "<your-token>"
+# Locally (bash/WSL):
+#   export NETBOX_URL=https://netbox.example.com
+#   export NETBOX_TOKEN=your-token
+
+netbox_url: "{{ lookup('ansible.builtin.env', 'NETBOX_URL') | default('https://netbox.example.com', true) }}"
+# Prefer env var; if unset, securely fall back to reading ~/.netbox_token
+netbox_token: "{{ (lookup('ansible.builtin.env', 'NETBOX_TOKEN') | default('', true)) | length > 0
+  | ternary(lookup('ansible.builtin.env', 'NETBOX_TOKEN'), (lookup('ansible.builtin.file', lookup('ansible.builtin.env','HOME') + '/.netbox_token') | trim)) }}"
+# Set to false if using self-signed certs on your NetBox endpoint
+netbox_validate_certs: "{{ (lookup('ansible.builtin.env', 'NETBOX_VALIDATE_CERTS') | default('true', true)) | bool }}"
+

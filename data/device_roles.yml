@@ -1,0 +1,48 @@
+---
+# NetBox Device Roles Configuration
+# Define the roles/functions of devices in your infrastructure
+netbox_device_roles:
+  # Network Roles
+  - name: Router
+    slug: router
+    color: "0000ff"  # Blue
+    vm_role: false
+    description: "Layer 3 routing devices"
+    
+  - name: Switch
+    slug: switch
+    color: "00ff00"  # Green
+    vm_role: false
+    description: "Layer 2 switching devices"
+    
+  - name: Firewall
+    slug: firewall
+    color: "ff0000"  # Red
+    vm_role: false
+    description: "Security appliances"
+    
+  - name: Load Balancer
+    slug: load-balancer
+    color: "ff9900"  # Orange
+    vm_role: false
+    description: "Load balancing appliances"
+    
+  # Server Roles
+  - name: Server
+    slug: server
+    color: "808080"  # Gray
+    vm_role: false
+    description: "Generic compute servers"
+    
+  - name: Database Server
+    slug: database-server
+    color: "9900ff"  # Purple
+    vm_role: true
+    description: "Database servers"
+    
+  - name: Storage
+    slug: storage
+    color: "996633"  # Brown
+    vm_role: false
+    description: "Storage arrays and NAS devices"
+

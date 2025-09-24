@@ -1,0 +1,21 @@
+---
+- name: Ensure devices
+  when: (netbox_devices | default([])) | length > 0
+  loop: "{{ netbox_devices }}"
+  loop_control:
+    label: "{{ item.name }}"
+  netbox.netbox.netbox_device:
+    netbox_url: "{{ nb_common.netbox_url }}"
+    netbox_token: "{{ nb_common.netbox_token }}"
+    validate_certs: "{{ nb_common.validate_certs }}"
+    data:
+      name: "{{ item.name }}"
+      device_role: "{{ item.device_role }}"
+      device_type: "{{ item.device_type }}"
+      site: "{{ item.site }}"
+      platform: "{{ item.platform | default(omit) }}"
+      serial: "{{ item.serial | default(omit) }}"
+      status: "{{ item.status | default('active') }}"
+      tags: "{{ item.tags | default(omit) }}"
+    state: present
+

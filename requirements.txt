@@ -1,0 +1,4 @@
+ansible-core>=2.16.5
+pynetbox>=7.3.3
+ansible-lint>=6.22.0
+

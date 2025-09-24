@@ -1,0 +1,18 @@
+---
+- name: Ensure sites
+  when: (netbox_sites | default([])) | length > 0
+  loop: "{{ netbox_sites }}"
+  loop_control:
+    label: "{{ item.name }}"
+  netbox.netbox.netbox_site:
+    netbox_url: "{{ nb_common.netbox_url }}"
+    netbox_token: "{{ nb_common.netbox_token }}"
+    validate_certs: "{{ nb_common.validate_certs }}"
+    data:
+      name: "{{ item.name }}"
+      slug: "{{ item.slug | default(omit) }}"
+      status: "{{ item.status | default('active') }}"
+      time_zone: "{{ item.time_zone | default(omit) }}"
+      region: "{{ item.region | default(omit) }}"
+    state: present
+

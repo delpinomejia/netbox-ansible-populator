@@ -1,0 +1,19 @@
+---
+- name: Ensure device types
+  when: (netbox_device_types | default([])) | length > 0
+  loop: "{{ netbox_device_types }}"
+  loop_control:
+    label: "{{ item.manufacturer }} {{ item.model }}"
+  netbox.netbox.netbox_device_type:
+    netbox_url: "{{ nb_common.netbox_url }}"
+    netbox_token: "{{ nb_common.netbox_token }}"
+    validate_certs: "{{ nb_common.validate_certs }}"
+    data:
+      manufacturer: "{{ item.manufacturer }}"
+      model: "{{ item.model }}"
+      slug: "{{ item.slug | default(omit) }}"
+      part_number: "{{ item.part_number | default(omit) }}"
+      u_height: "{{ item.u_height | default(1) }}"
+      is_full_depth: "{{ item.is_full_depth | default(true) }}"
+    state: present
+
