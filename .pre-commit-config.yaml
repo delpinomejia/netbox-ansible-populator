@@ -1,0 +1,26 @@
+---
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: check-yaml
+      - id: check-json
+      - id: check-merge-conflict
+      - id: detect-private-key
+      - id: no-commit-to-branch
+        args: ['--branch', 'main']
+
+  - repo: https://github.com/ansible/ansible-lint
+    rev: v6.17.2
+    hooks:
+      - id: ansible-lint
+        files: \.(yaml|yml)$
+
+  - repo: local
+    hooks:
+      - id: detect-sensitive-data
+        name: Detect Sensitive Data
+        entry: python scripts/security/detect_sensitive.py
+        language: python
+        files: \.(yaml|yml|json|md)$
+        additional_dependencies: ['pyyaml', 'ipaddress']

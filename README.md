@@ -311,4 +311,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**⚠️ Important:** Remember to replace `delpinomejia` with your actual GitHub username throughout this README!
+⚠️ Important: This repository uses example data only. Never commit real infrastructure data or credentials.
